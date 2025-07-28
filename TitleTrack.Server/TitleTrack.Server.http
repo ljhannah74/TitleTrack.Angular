@@ -1,0 +1,6 @@
+@TitleTrack.Server_HostAddress = http://localhost:5257
+
+GET {{TitleTrack.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
