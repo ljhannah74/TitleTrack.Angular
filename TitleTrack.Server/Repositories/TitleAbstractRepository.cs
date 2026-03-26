@@ -31,12 +31,20 @@ namespace TitleTrack.Server.Repositories
 
         public async Task<IEnumerable<TitleAbstract>> GetAllTitleAbstractsAsync()
         {
-            return await _context.TitleAbstracts.ToListAsync();
+            return await _context.TitleAbstracts
+                .Include(t => t.Client)
+                .Include(t => t.Property)
+                .Include(t => t.ProductType)
+                .ToListAsync();
         }
 
         public async Task<TitleAbstract?> GetTitleAbstractByIdAsync(int id)
         {
-            return await _context.TitleAbstracts.FindAsync(id);
+            return await _context.TitleAbstracts
+                .Include(t => t.Client)
+                .Include(t => t.Property)
+                .Include(t => t.ProductType)
+                .FirstOrDefaultAsync(t => t.TitleAbstractID == id);
         }
 
         public async Task UpdateTitleAbstractAsync(TitleAbstract titleAbstract)

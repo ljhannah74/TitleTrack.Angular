@@ -43,5 +43,33 @@ namespace TitleTrack.Server.Controllers
             await _titleAbstractRepository.AddTitleAbstractAsync(titleAbstract);
             return CreatedAtAction(nameof(GetTitleAbstractByIdAsync), new { id = titleAbstract.TitleAbstractID }, titleAbstract);
         }
+
+        [HttpPut]
+        public async Task<ActionResult> UpdateTitleAbstractAsync([FromBody] TitleAbstract titleAbstract)
+        {
+            if (titleAbstract == null)
+            {
+                return BadRequest("Title abstract cannot be null.");
+            }
+            var existingTitleAbstract = await _titleAbstractRepository.GetTitleAbstractByIdAsync(titleAbstract.TitleAbstractID);
+            if (existingTitleAbstract == null)
+            {
+                return NotFound();
+            }
+            await _titleAbstractRepository.UpdateTitleAbstractAsync(titleAbstract);
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteTitleAbstractAsync(int id)
+        {
+            var existingTitleAbstract = await _titleAbstractRepository.GetTitleAbstractByIdAsync(id);
+            if (existingTitleAbstract == null)
+            {
+                return NotFound();
+            }
+            await _titleAbstractRepository.DeleteTitleAbstractAsync(id);
+            return NoContent();
+        }
     }
 }

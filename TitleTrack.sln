@@ -1,10 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.14.36310.24 d17.14
+# Visual Studio Version 18
+VisualStudioVersion = 18.4.11620.152 stable
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "titletrack.client", "titletrack.client\titletrack.client.esproj", "{EC1721C2-754C-F811-B343-43CA8DC7804C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TitleTrack.Server", "TitleTrack.Server\TitleTrack.Server.csproj", "{979348B1-C693-4B5F-97C0-70122E47E480}"
 EndProject
 Global
@@ -13,12 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EC1721C2-754C-F811-B343-43CA8DC7804C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EC1721C2-754C-F811-B343-43CA8DC7804C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EC1721C2-754C-F811-B343-43CA8DC7804C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{EC1721C2-754C-F811-B343-43CA8DC7804C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EC1721C2-754C-F811-B343-43CA8DC7804C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EC1721C2-754C-F811-B343-43CA8DC7804C}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{979348B1-C693-4B5F-97C0-70122E47E480}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{979348B1-C693-4B5F-97C0-70122E47E480}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{979348B1-C693-4B5F-97C0-70122E47E480}.Release|Any CPU.ActiveCfg = Release|Any CPU
