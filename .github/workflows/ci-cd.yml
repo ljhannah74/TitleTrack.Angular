@@ -1,0 +1,60 @@
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Setup .NET for backend
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x' # Adjust to your version
+
+      # 3. Restore, build, and test backend
+      - name: Restore backend dependencies
+        run: dotnet restore ./TitleTrack.Server
+
+      - name: Build backend
+        run: dotnet build ./TitleTrack.Server --configuration Release --no-restore
+
+      - name: Test backend
+        run: dotnet test ./TitleTrack.Server --no-build --verbosity normal
+
+      # 4. Setup Node.js for titletrack.client
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Match your Angular version requirements
+          cache: 'npm'
+          cache-dependency-path: ./titletrack.client/package-lock.json
+
+      # 5. Install, build, and test frontend
+      - name: Install frontend dependencies
+        run: npm ci
+        working-directory: ./titletrack.client
+
+      - name: Build frontend
+        run: npm run build --if-present
+        working-directory: ./titletrack.client
+
+      - name: Test frontend
+        run: npm test --if-present
+        working-directory: ./titletrack.client
+
+      # 6. (Optional) Publish artifacts
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifacts
+          path: |
+            TitleTrack.Service/bin/Release/net8.0/
+            titletrack.client/dist/
